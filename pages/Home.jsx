@@ -6,10 +6,9 @@ function Home() {
 
       <h1>Home Page</h1>
 
-      <Link to='https://demo-sitemap-app.vercel.app'>Home</Link>
-      <Link to='https://demo-sitemap-app.vercel.app/about'>About</Link>
-      <Link to='https://demo-sitemap-app.vercel.app/services'>Service</Link>
-
+      <Link to='/'>Home</Link>
+      <Link to='/about'>About</Link>
+      <Link to='/service'>Service</Link>
     </div>
   )
 }
