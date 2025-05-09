@@ -1,3 +1,4 @@
+
 {
   "name": "demo-sitemap",
   "private": true,
@@ -5,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node generatesitemap.js",  
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

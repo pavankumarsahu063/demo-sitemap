@@ -1,33 +1,36 @@
 import { writeFile } from 'fs/promises';
 import path from 'path';
 
-const baseUrl = "https://demo-sitemap-app.vercel.app";
-
-const endPoints = [
+const baseUrl = "https://demo-sitemap-app.vercel.app/";  
+const paths = [
   "/",
   "/about",
-  "/service"
+  "/contact",
+  "/services",
+  "/login",
 ];
 
-const date = new Date();
-const lastUpdate = date.toISOString().split("T")[0];
+const today = new Date().toISOString().split("T")[0];
 
-
-const urls = endPoints.map((currentPage) => {
-  return `
-    <url>
-      <loc>${baseUrl}${currentPage}</loc>
-      <lastmod>${lastUpdate}</lastmod>
-      <changefreq>daily</changefreq>
-      <priority>0.8</priority>
-    </url>`;
-}).join("");
-
-
-const siteMap = `<?xml version="1.0" encoding="UTF-8"?>
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls}
+${paths
+  .map(
+    (path) => `
+  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`
+  )
+  .join("")}
 </urlset>`;
 
-await writeFile("public/sitemap.xml", siteMap);
-console.log("successful");
+// eslint-disable-next-line no-undef
+const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+
+
+await writeFile(sitemapPath, sitemap);
+
+console.log("✅ Sitemap written to public/sitemap.xml");
