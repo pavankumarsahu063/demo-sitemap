@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <h1>Site Map Demo Project</h1>
+   
   <BrowserRouter>
   
     <Routes>
