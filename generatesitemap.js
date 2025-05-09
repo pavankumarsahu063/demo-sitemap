@@ -34,5 +34,5 @@ const siteMap=`
 
 </urlset>`;
 
-await writeFile("publi/sitemap.xml",siteMap);
+await writeFile("public/sitemap.xml",siteMap);
 console.log("sucessfull");
