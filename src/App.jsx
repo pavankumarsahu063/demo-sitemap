@@ -14,7 +14,7 @@ function App() {
   
     <Routes>
 
-      <Route path='https://demo-sitemap-app.vercel.app/' element={<Home/>}/>
+      <Route path='https://demo-sitemap-app.vercel.app' element={<Home/>}/>
       <Route path='https://demo-sitemap-app.vercel.app/about' element={<About/>}/>
       <Route path='https://demo-sitemap-app.vercel.app/services' element={<Service/>}/>
     </Routes>
