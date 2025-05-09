@@ -1,38 +1,33 @@
-import {writeFile} from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import path from 'path';
 
+const baseUrl = "https://demo-sitemap-app.vercel.app";
 
-const baseUrl="https://demo-sitemap-app.vercel.app/";
-
-const endPoints=[
-
-    "/",
-    "/about",
-    "/service"
+const endPoints = [
+  "/",
+  "/about",
+  "/service"
 ];
 
-const date =new Date();
-const lastUpdate=date.toISOString().split("T")[0];
+const date = new Date();
+const lastUpdate = date.toISOString().split("T")[0];
 
 
-const siteMap=`
-    <?xml version="1.0" encoding="UTF-8"?>
+const urls = endPoints.map((currentPage) => {
+  return `
+    <url>
+      <loc>${baseUrl}${currentPage}</loc>
+      <lastmod>${lastUpdate}</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+    </url>`;
+}).join("");
+
+
+const siteMap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-
-
-    endPoints.map((currentPage)=>
-
-        <url>
-            <loc>${baseUrl}${path}</loc>
-            <lastmod>${lastUpdate}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>03</priority>
-        </url>
-)
-.join("")}
-
+  ${urls}
 </urlset>`;
 
-await writeFile("public/sitemap.xml",siteMap);
-console.log("sucessfull");
+await writeFile("public/sitemap.xml", siteMap);
+console.log("successful");
