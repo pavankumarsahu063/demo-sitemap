@@ -1,7 +1,7 @@
 import { writeFile } from 'fs/promises';
 import path from 'path';
 
-const baseUrl = "https://demo-sitemap-app.vercel.app/";  
+const baseUrl = "https://demo-sitemap-app.vercel.app";  
 const paths = [
   "/",
   "/about",
@@ -10,7 +10,8 @@ const paths = [
   "/login",
 ];
 
-const today = new Date().toISOString().split("T")[0];
+const date = new Date();
+const latestDate=date.toISOString().split("T")[0];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -19,7 +20,7 @@ ${paths
     (path) => `
   <url>
     <loc>${baseUrl}${path}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${latestDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`
@@ -33,4 +34,4 @@ const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
 
 await writeFile(sitemapPath, sitemap);
 
-console.log("✅ Sitemap written to public/sitemap.xml");
+
